@@ -8,6 +8,7 @@ import Model.ModelClass;
 import Model.ModelClassFile;
 import Model.Domain.Student;
 import View.ViewClass;
+import View.ViewClassEng;
 
 public class App {
     public static void main(String[] args) {
@@ -51,9 +52,11 @@ public class App {
         iGetView view = new ViewClass();
         iGetModel model = new ModelClass(students);
 
-       ControllerClass controller = new ControllerClass(fmClass, view);
-        
+        ControllerClass controller = new ControllerClass(model, view);
+
        // controller.update();
+
+        
         controller.run();
     }
 }
