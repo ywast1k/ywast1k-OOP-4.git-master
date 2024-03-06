@@ -15,6 +15,8 @@ public class ControllerClass {
     public ControllerClass(iGetModel model, iGetView view) {
         this.model = model;
         this.view = view;
+        
+
     }
 
     private boolean testData(List<Student> students) {
@@ -53,11 +55,25 @@ public class ControllerClass {
                 case LIST:
                     view.printAllSrudent(model.getAllStudents());
                     break;
-            
+                case DELETE:  // удаление студентов
+                    int id = Integer.parseInt(view.prompt("Введите ID студента для удаления: ")); // Всплывающая строчка для пользователя
+                    List<Student> students = model.getAllStudents(); // Чтение необходимого списка
+                    for (Student student : students) {  // Проходим по циклу фор для удаления нужного студента по id
+                        if (student.getId() == id) { // Если данный студент имеет ид ... , то
+                            students.remove(student); // удаление студента
+                   //         fmClass.updateStudentData(students);   // Обновление после csv---- Не получается реализовать именно перезапись
+                            System.out.println("Студент удален");   // Вывод сообщения пользователю
+                            break;      // 
+                        }
+                    }
+                    System.out.println("Студент с таким ID не найден");
+                    break;
+            }
+    
                 
             }
 
         }
     }
 
-}
+

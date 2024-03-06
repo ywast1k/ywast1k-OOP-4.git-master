@@ -6,6 +6,7 @@ public enum Command {
     CREATE,
     UPDATE,
     LIST,
+    LIST2,
     DELETE,
     EXIT
 }

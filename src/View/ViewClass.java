@@ -24,4 +24,5 @@ public class ViewClass implements iGetView {
         System.out.println(msg);
         return in.nextLine();
     }
+    
 }

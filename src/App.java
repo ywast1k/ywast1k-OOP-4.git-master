@@ -8,7 +8,7 @@ import Model.ModelClass;
 import Model.ModelClassFile;
 import Model.Domain.Student;
 import View.ViewClass;
-import View.ViewClassEng;
+
 
 public class App {
     public static void main(String[] args) {
@@ -48,15 +48,15 @@ public class App {
 
 
         ModelClassFile fmClass = new ModelClassFile("StudentDB.csv");
-        //  fmClass.saveAllStudentToFile(students);  сохранение первое для создания файла
+
+        //  fmClass.saveAllStudentToFile(students);  //  сохранение первое для создания файла
         iGetView view = new ViewClass();
         iGetModel model = new ModelClass(students);
-
+    ;
         ControllerClass controller = new ControllerClass(model, view);
 
        // controller.update();
 
-        
         controller.run();
     }
 }
