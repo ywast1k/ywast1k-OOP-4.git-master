@@ -61,7 +61,7 @@ public class ControllerClass {
                     for (Student student : students) {  // Проходим по циклу фор для удаления нужного студента по id
                         if (student.getId() == id) { // Если данный студент имеет ид ... , то
                             students.remove(student); // удаление студента
-                   //         fmClass.updateStudentData(students);   // Обновление после csv---- Не получается реализовать именно перезапись
+                            fmClass.saveAllStudentToFile(students);   // Обновление после csv---- Не получается реализовать именно перезапись
                             System.out.println("Студент удален");   // Вывод сообщения пользователю
                             break;      // 
                         }

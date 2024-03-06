@@ -6,6 +6,7 @@ import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
 import Model.ModelClass;
 import Model.ModelClassFile;
+import Model.ModelClassHash;
 import Model.Domain.Student;
 import View.ViewClass;
 
@@ -48,8 +49,9 @@ public class App {
 
 
         ModelClassFile fmClass = new ModelClassFile("StudentDB.csv");
+        ModelClassHash Hash = new ModelClassHash("StudentHB.csv");
 
-        //  fmClass.saveAllStudentToFile(students);  //  сохранение первое для создания файла
+         fmClass.saveAllStudentToFile(students);  //  сохранение первое для создания файла
         iGetView view = new ViewClass();
         iGetModel model = new ModelClass(students);
     ;
