@@ -1,22 +1,30 @@
 package Model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import Controller.Interfaces.iGetModel;
 import Model.Domain.Student;
 
-public class ModelClassHash implements iGetModel { // имплементируем в гет модель
-    private HashMap<Integer, Student> students;     // создаем HashMap
+import java.util.HashMap;
+import java.util.List;
+/*
+Класс ModelClassHash где список студентов хранится в виде коллекции HashMap
+ */
+public class ModelClassHash implements iGetModel {
 
-    public ModelClassHash() {               
-        this.students = new HashMap<>();
+    private HashMap<Long, Student> students; //
+
+    public ModelClassHash(HashMap<Long, Student> students) {
+        this.students = students;
+    }
+
+
+    @Override
+    public List<Student> getStudents() {
+        return (List<Student>) students.values(); // метод возвращает List<Student> , преобразуя его из HashMap
     }
 
     @Override
-    public List<Student> getAllStudents() {         
-        return students.values().stream().collect(Collectors.toList()); // возвращение коллекции студентов
+    public String delStudent(int num) {
+        return null;
     }
 
 }

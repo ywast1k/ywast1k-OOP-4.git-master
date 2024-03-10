@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
 import Model.Domain.Student;
@@ -10,17 +12,15 @@ public class ControllerClass {
 
     private iGetModel model;
     private iGetView view;
-    private List<Student> bufferStudentList = new ArrayList<Student>();
+    private List<Student> students = new ArrayList<Student>();
 
     public ControllerClass(iGetModel model, iGetView view) {
         this.model = model;
         this.view = view;
-        
-
     }
 
-    private boolean testData(List<Student> students) {
-        if (students.size() > 0) {
+    private boolean testData(List<Student> studs) {
+        if (studs.size() > 0) {
             return true;
         } else {
             return false;
@@ -28,52 +28,44 @@ public class ControllerClass {
     }
 
     public void update() {
-        // MVC
-        // view.printAllSrudent(model.getStudents());
 
-        bufferStudentList = model.getAllStudents();
-        if (testData(bufferStudentList)) {
-            view.printAllSrudent(bufferStudentList);
+        //MVP
+        students = model.getStudents();
+
+        if (testData(students)) {
+            view.printAllSrudent(students);
         } else {
             System.out.println("Список студентов пуст!");
         }
 
+
+        // MVC
+        //view.printAllStudent(model.getStudents());
     }
 
-    public void run()
-    {
+
+    public void run() {
+        Scanner in = new Scanner(System.in);
         Command com = Command.NONE;
-        boolean getNewIteration = true;
-        while (getNewIteration) {
-            String command = view.prompt("Введите команду: ");
+        boolean getNewIter = true;
+        while (getNewIter) {
+            String command = view.prompt("Введите команду:");
             com = Command.valueOf(command.toUpperCase());
             switch (com) {
                 case EXIT:
-                    getNewIteration = false;
+                    getNewIter = false;
                     System.out.println("Выход из программы");
                     break;
                 case LIST:
-                    view.printAllSrudent(model.getAllStudents());
+                    view.printAllSrudent(model.getStudents());
                     break;
-                case DELETE:  // удаление студентов
-                    int id = Integer.parseInt(view.prompt("Введите ID студента для удаления: ")); // Всплывающая строчка для пользователя
-                    List<Student> students = model.getAllStudents(); // Чтение необходимого списка
-                    for (Student student : students) {  // Проходим по циклу фор для удаления нужного студента по id
-                        if (student.getId() == id) { // Если данный студент имеет ид ... , то
-                            students.remove(student); // удаление студента
-                            fmClass.saveAllStudentToFile(students);   // Обновление после csv---- Не получается реализовать именно перезапись
-                            System.out.println("Студент удален");   // Вывод сообщения пользователю
-                            break;      // 
-                        }
-                    }
-                    System.out.println("Студент с таким ID не найден");
-                    break;
-            }
-    
-                
-            }
+                case DELETE:
+                    System.out.println("Введите номер студента на удаление");
+                    int num = in.nextInt();
+                    System.out.println(model.delStudent(num));
 
+            }
         }
     }
 
-
+}

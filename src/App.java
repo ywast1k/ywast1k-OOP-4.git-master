@@ -4,9 +4,9 @@ import java.util.List;
 import Controller.ControllerClass;
 import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
-import Model.ModelClass;
 import Model.ModelClassFile;
 import Model.ModelClassHash;
+import Model.ModelClassList;
 import Model.Domain.Student;
 import View.ViewClass;
 
@@ -48,17 +48,15 @@ public class App {
         students.add(student12);
 
 
-        ModelClassFile fmClass = new ModelClassFile("StudentDB.csv");
-        ModelClassHash Hash = new ModelClassHash("StudentHB.csv");
+        ModelClassList listModel = new ModelClassList(students);
 
-         fmClass.saveAllStudentToFile(students);  //  сохранение первое для создания файла
+        iGetModel modelList = listModel;
         iGetView view = new ViewClass();
-        iGetModel model = new ModelClass(students);
-    ;
-        ControllerClass controller = new ControllerClass(model, view);
 
-       // controller.update();
+        ControllerClass controller = new ControllerClass(modelList, view);
 
-        controller.run();
+       controller.run();
+
+
     }
 }

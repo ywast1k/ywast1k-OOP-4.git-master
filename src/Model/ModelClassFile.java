@@ -23,8 +23,8 @@ public class ModelClassFile implements iGetModel {
         }
     }
 
-    @Override
-    public List<Student> getAllStudents() {
+    // @Override
+    public List<Student> getStudents() {
         List<Student> students = new ArrayList<Student>();
         try {
             File file = new File(fileName);
@@ -45,6 +45,11 @@ public class ModelClassFile implements iGetModel {
         return students;
     }
 
+    @Override
+    public String delStudent(int num) { // метод удаления студента из списка НЕ ПОЛУЧИЛОСЬ СДЕЛАТЬ
+        return " ";
+    }
+
     public void saveAllStudentToFile(List<Student> students) {
         try (FileWriter fw = new FileWriter(fileName, true)) {
             for (Student pers : students) {
@@ -57,8 +62,5 @@ public class ModelClassFile implements iGetModel {
         }
     }
 
-   
-
-    
-
 }
+
